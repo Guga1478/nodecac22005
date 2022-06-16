@@ -1,13 +1,15 @@
 
-    <h1>Listado de Productos</h1>
+    <h1 class="mb-3">Listado de Productos</h1>
     
     <% productos.forEach(producto => { %>
         <h2><a href="/productos/<%= producto.id %>">ID: <%= producto.id %></a></h2>
         <p>Nombre:<%= producto.nombre %></p>
+        <a href="/productos/<%= producto.id %>">Ver Detalles</a>
+        <a href="/productos/<%= producto.id %>/edit">Editar</a>
     <% }) %>
 
 <div>
-    <a href="/productos/create">Crear Producto</a>
+    <a href="/productos/create" class="btn btn-success">Crear Producto</a>
 </div>
 
 <br><br>

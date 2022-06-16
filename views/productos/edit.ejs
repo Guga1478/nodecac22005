@@ -1,8 +1,8 @@
 <div class="justify content-center">
-<form action="/productos/store" method="post">
+<form action="/productos/update?_method=PUT" method="post">
     <div>
-        <label for="nombre" class="form-label">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" class="form-control">
+        <label for="nombre" class="form-label" >Nombre:</label>
+        <input type="text" name="nombre" id="nombre" class="form-control" value="<%= producto.nombre %>">
     </div>
     <div>
         <label for="categoria" class="form-label">Categoria:</label>

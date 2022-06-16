@@ -2,37 +2,21 @@ const express = require('express');
 const router = express.Router();
 
 //const productos = require('../productos');
-const connection = require('../db'); 
+const connection = require('../db');
+const controller = require('../oontroller'); 
 
-router.get('/productos', (req, res) =>{
-    connection.query('SELECT * FROM productos', (error, results) =>{
-        if (error) {throw error}
-        res.render('productos/index', {productos: results});
-    });    
- });
+router.get('/productos', controller.index);
 
- router.get('/productos/create', (req, res)=>{
-    res.render('productos/create');
- });
+ router.get('/productos/create', controller.create);
 
- router.post('/productos/store', (req, res)=>{
-    connection.query('INSERT INTO productos SET ?',
-    {nombre: req.body.nombre, categoria_id: req.body.categoria} , (error, results)=>{
-       if(error){throw error}
-
-       //console.log(results);
-       res.redirect('/productos')
-    });
- })
+ router.post('/productos/store', controller.store);
  
- router.get('/productos/:id', (req, res)=>{
-    connection.query('SELECT * FROM productos where id = ?',[req.params.id], (error, results)=>{
-       if(error){throw error}
+ 
+ router.get('/productos/:id', controller.show);
 
-       res.render('productos/show', {producto: results[0]});
+ router.get('/productos/:id/edit', controller.edit);
+ router.put('/productos/update', controller.update);
 
-    });     
- });
  
  
  module.exports = router;
