@@ -15,9 +15,8 @@ module.exports.store = (req, res)=>{
     connection.query('INSERT INTO productos SET ?',
     {nombre: req.body.nombre, categoria_id: req.body.categoria} , (error, results)=>{
        if(error){throw error}
-
-       //console.log(results);
-       res.redirect('/productos')
+       
+       res.redirect('/productos');
     });
 };
 
@@ -31,7 +30,7 @@ module.exports.show = (req, res)=>{
  };
 
  module.exports.edit = (req, res) =>{
-    connection.query('SELECT * FROM productos where id = ?',[req.params.id], (error, results)=>{
+    connection.query('SELECT * FROM productos WHERE id = ?',[req.params.id], (error, results)=>{
         if(error){throw error}
  
         res.render('productos/edit', {producto: results[0]});
@@ -47,5 +46,5 @@ module.exports.show = (req, res)=>{
          if(error) {throw error}
          res.redirect('/productos');
      });
- }
+ };
 
