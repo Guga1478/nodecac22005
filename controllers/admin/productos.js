@@ -1,14 +1,14 @@
-const connection = require('./db'); 
+const connection = require('../../db'); 
 
 module.exports.index = (req, res) =>{
     connection.query('SELECT * FROM productos', (error, results) =>{
         if (error) {throw error}
-        res.render('productos/index', {productos: results});
+        res.render('admin/productos/index', {productos: results, layout: 'layout-admin'});
     });    
 };
 
 module.exports.create = (req, res)=>{
-    res.render('productos/create');
+    res.render('admin/productos/create', {layout: 'layout-admin'});
 };
 
 module.exports.store = (req, res)=>{
@@ -16,7 +16,7 @@ module.exports.store = (req, res)=>{
     {nombre: req.body.nombre, categoria_id: req.body.categoria} , (error, results)=>{
        if(error){throw error}
        
-       res.redirect('/productos');
+       res.redirect('/admin/productos');
     });
 };
 
@@ -24,7 +24,7 @@ module.exports.show = (req, res)=>{
     connection.query('SELECT * FROM productos where id = ?',[req.params.id], (error, results)=>{
        if(error){throw error}
 
-       res.render('productos/show', {producto: results[0]});
+       res.render('admin/productos/show', {producto: results[0], layout: 'layout-admin'});
 
     });     
  };
@@ -33,7 +33,7 @@ module.exports.show = (req, res)=>{
     connection.query('SELECT * FROM productos WHERE id = ?',[req.params.id], (error, results)=>{
         if(error){throw error}
  
-        res.render('productos/edit', {producto: results[0]});
+        res.render('admin/productos/edit', {producto: results[0], layout: 'layout-admin'});
  
      });     
     
@@ -44,7 +44,15 @@ module.exports.show = (req, res)=>{
          {nombre: req.body.nombre, categoria_id: req.body.categoria}, req.body.id
      ] , (error, results) =>{
          if(error) {throw error}
-         res.redirect('/productos');
+         res.redirect('/admin/productos');
      });
  };
+
+ module.exports.delete = (req, res)=>{
+     connection.query('DELETE FROM productos WHERE id = ?', [req.params.id], (error, results)=>{
+         if (error){throw error}
+
+         res.redirect('/admin/productos');
+     });
+ }
 

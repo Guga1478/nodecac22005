@@ -1,0 +1,12 @@
+
+<% if(producto) { %>
+    <h1>ID:<%= producto.id %> </h1>
+    <h2><%= producto.nombre %> </h2>
+    <a href="/admin/productos/<%= producto.id %>/edit" class="btn btn-warning">Editar</a>
+<% } else{ %>
+     <p>No existe el producto</p>
+<% } %>
+  
+
+    
+ 
