@@ -1,0 +1,12 @@
+
+<% if(categoria) { %>
+    <h1>ID:<%= categoria.id %> </h1>
+    <h2><%= categoria.nombre %> </h2>
+    <a href="/admin/categorias/<%= categoria.id %>/edit" class="btn btn-warning">Editar</a>
+<% } else{ %>
+     <p>No existe el categoria</p>
+<% } %>
+  
+
+    
+ 

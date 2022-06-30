@@ -1,0 +1,23 @@
+<h1>Editar Categoria</h1>
+<div class="justify content-center">
+<div class="col-6">    
+<form action="/admin/categorias/update?_method=PUT" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<%= categoria.id %>">
+    <div>
+        <label for="nombre" class="form-label" >Nombre:</label>
+        <input type="text" name="nombre" id="nombre" class="form-control" value="<%= categoria.nombre %>">
+    </div>
+  
+    <!-- <div>
+        <label for="categoria" class="form-label">Categoria:</label>
+        <select class="form-control" name="categoria" id="categoria">
+            <option value=""></option>
+            <option value="1" <%= (categoria.categoria_id == 1) ? 'selected' : '' %>>Categoria 1</option>
+            <option value="2" <%= (categoria.categoria_id == 2) ? 'selected' : '' %>>Categoria 2</option>
+        </select>
+    </div> -->
+    <button type="submit" class="btn btn-success">Guardar</button>
+
+</form>
+</div>
+</div>
