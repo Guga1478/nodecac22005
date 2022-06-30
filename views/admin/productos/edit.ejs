@@ -1,11 +1,16 @@
 <h1>Editar Producto</h1>
 <div class="justify content-center">
 <div class="col-6">    
-<form action="/admin/productos/update?_method=PUT" method="post">
+<form action="/admin/productos/update?_method=PUT" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<%= producto.id %>">
     <div>
         <label for="nombre" class="form-label" >Nombre:</label>
         <input type="text" name="nombre" id="nombre" class="form-control" value="<%= producto.nombre %>">
+    </div>
+    <div>
+        <label for="imagen" class="form-label">Imagen:</label>
+        <input type="file" name="imagen" id="imagen" class="form-control">
+        <img width="70" src="/uploads/producto_<%= producto.id %>.jpg" alt="<%= producto.nombre %>">
     </div>
     <div>
         <label for="categoria" class="form-label">Categoria:</label>

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
+const ejs = require('ejs');
 
 const {body, validationResult} = require('express-validator');
 
@@ -15,7 +17,35 @@ router.post('/contacto',[
     const errors = validationResult(req);
     //console.log(req.body, errors);
     if(errors.isEmpty()){
-        res.send('Enviado....');
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.mailtrap.io',
+            port: 2525,
+            secure: false,
+            auth:{
+                user: '21de79f0068f15' ,
+                pass: '1ed492c0d98516'
+            }
+            
+        });
+        
+        ejs.renderFile(__dirname + '/../views/contacto/correo.ejs', { body: req.body }, (error, html)=>{
+            if (error){throw error }
+            const options = {
+                from: req.body.email,
+                to: 'y@y.com',
+                subject: 'Nodemailer',
+                html: html
+            }
+            
+            transporter.sendMail(options, (error, info) =>{
+                if(error){throw error}
+                console.log(info);
+        });
+
+      
+        });
+
+        res.redirect('/');
     }else{
         res.render('contacto/index', {
             values: req.body,
