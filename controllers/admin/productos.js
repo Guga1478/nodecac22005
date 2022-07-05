@@ -24,7 +24,7 @@ module.exports.store = (req, res)=>{
               
        res.redirect('/admin/productos');
     });
-};
+}
 
 module.exports.show = (req, res)=>{
     connection.query('SELECT * FROM productos where id = ?',[req.params.id], (error, results)=>{
